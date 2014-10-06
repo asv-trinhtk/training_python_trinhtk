@@ -20,13 +20,15 @@ define([
 	'dojo/query',
 	'dojo/_base/Deferred',
 	'../models/app',
+	'./_StandbyMixin',
 	"dojo/text!./templates/GuestbookWidget.html"
 ], function(declare, lang, on, arrayUtil, GreetingWidget, GreetingStore,
 			dom, cookie, domConstruct, button, validationtextbox,_ViewBaseMixin,
-			_ListViewMixin, router, domStyle, hash, topic, domAttr, query, Deferred, app, template){
+			_ListViewMixin, router, domStyle, hash, topic, domAttr, query, Deferred, app,
+			_StandbyMixin, template){
 	//Show greetings
 
-	return declare("app.FirstWidget",[_ListViewMixin], {
+	return declare("app.FirstWidget",[_ListViewMixin, _StandbyMixin], {
 		guestbook : "default_guestbook",
 		templateString: template,
 		baseClass: "GuestbookWidget",
@@ -77,6 +79,7 @@ define([
 				this.guestbook = this.guestbookNode.value;
 				this.loadItems(option);
 			}
+			this.standby.hide();
 		},
 
 		loaddetailgreeting: function(id, guestbook, time){
@@ -173,6 +176,7 @@ define([
 				this.clearItems();
 			}
 			return Deferred.when(this.fetchItems(options), lang.hitch(this, function(items) {
+				this.standby.show();
 				if (items.greetings && items.greetings.length === options.limit) {
 					arrayUtil.forEach(items.greetings, function(greeting){
 						greeting.is_admin = items.is_admin;
@@ -187,12 +191,12 @@ define([
 					else{
 						this.set('pagingOption', null);
 					}
-//					guestbookWidget.cursor = items.cursor;
 				}
 				this.itemLoaded += items.itemLoaded;
 				this.set('lastItems', items.greetings);
 				this.set('totalItems', items.totalItems);
 				this.renderCountLoaded(this.itemLoaded);
+				this.standby.hide();
 			}));
 		},
 
@@ -207,8 +211,6 @@ define([
 			this.store = new GreetingStore();
 			this.guestbookNode.value = this.guestbook;
 			this.inherited(arguments);
-			console.log("postCreate GuestbookWidget");
-			console.log(this.model);
 			domStyle.set(dom.byId("idGreeting"), "display", "none");
 			domStyle.set(dom.byId("idGreetingDetails"), "display", "none");
 			this.own(
