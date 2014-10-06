@@ -12,13 +12,13 @@
             editor:'dijit/form/ValidationTextBox',
             autoSave: false, disabled:  true,
             editorParams: {required:'true', maxLength: '10'}">${content}</p>
-    <span>Edited by: ${updated_by}</span> at <span class="date"> ${date_modified}</span><br/>
+    <span>${nls.txtEditedby}: ${updated_by}</span> ${nls.txtAt} <span class="date"> ${date_modified}</span><br/>
 	<button data-dojo-type="dijit/form/Button"
             data-dojo-attach-point="detailButtonNode"
-            style="display: inline" value="Detail"> Detail </button>
+            style="display: inline" value="Detail">&nbsp;${nls.detail}&nbsp;</button>
     <button data-dojo-type="dijit/form/Button"
             data-dojo-attach-point="deleteButtonNode"
-            style="display: inline; visibility: hidden" value="Delete"> Delete </button>
+            style="display: inline; visibility: hidden" value="Delete">&nbsp;${nls.delete}&nbsp;</button>
 
     <br/>
 </div>

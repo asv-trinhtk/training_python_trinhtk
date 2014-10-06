@@ -13,10 +13,11 @@ define([
 	"dijit/form/ValidationTextBox",
 	"dijit/InlineEditBox",
 	'dojo/router',
+	'dojo/i18n!../nls/common',
 	"dojo/text!./templates/GreetingWidget.html"
 ], function(cookie, baseFx, declare, lang, domStyle, mouse, on,
 			GreetingStore, GuestbookWidget, _ViewBaseMixin,
-			Button, ValidationTextBox, InlineEditBox, router, template){
+			Button, ValidationTextBox, InlineEditBox, router, nls, template){
 	return declare("guestbook.widget.GreetingWidget",[_ViewBaseMixin], {
 		author: "An anonymous",
 		content: "",
@@ -33,6 +34,7 @@ define([
 		is_author : false,
 		id_greeting : "",
 		avatar: require.toUrl("guestbook/widget/images/defaultAvatar.jpg"),
+		nls: nls,
 
 		postCreate: function(){
 			if(this.is_admin){

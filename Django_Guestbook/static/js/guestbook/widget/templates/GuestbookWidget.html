@@ -1,17 +1,17 @@
 
 <div>
-	Items loaded:<span data-dojo-attach-point="itemLoadedNode"></span>
-	Total items:<span data-dojo-attach-point="countNode"></span>
+	${nls.itemLoaded}<span data-dojo-attach-point="itemLoadedNode"></span>
+	${nls.totalItem}<span data-dojo-attach-point="countNode"></span>
 	<div style="float: right">
     <input data-dojo-attach-point="searchNode"
            value="" >
     <button data-dojo-type="dijit/form/Button"
             data-dojo-attach-point="searchButtonNode"
-            value="Search">&nbsp;Search&nbsp;</button>
+            value="Search">&nbsp;${nls.search}&nbsp;</button>
 	</div>
 	<div id="idPost">
 
-    <b>Update status:</b><br />
+    <b>${nls.txtUpdateStatus}</b><br />
     <input  data-dojo-attach-point="contentNode"
             id="content" class="valid"
             data-dojo-type="dijit.form.ValidationTextBox"
@@ -23,29 +23,29 @@
     <br />
     <button data-dojo-attach-point="signButtonNode"
             id="signButton" data-dojo-type="dijit/form/Button"
-            value="Post" style="float: right">&nbsp;Post Status&nbsp;</button>
+            value="Post" style="float: right">&nbsp;${nls.post}&nbsp;</button>
     <br/>
 	</div>
 
 
-    <div id="idGreeting"><b>News feed:</b>
+    <div id="idGreeting"><b>${nls.txtNewsFeed}</b>
 		<div data-dojo-attach-point="greetingListNode"
                                id="greetingListNode"
                                class="GreetingWidget"  data-dojo-attach-point="scrollNode" style="height: 500px; overflow-y:auto;"></div>
 		</div>
-	<div id="idGreetingDetails"><b>Greeting's detail:</b>
+	<div id="idGreetingDetails"><b>${nls.txtGreetingDetail}:</b>
 		<div data-dojo-attach-point="greetingDetailsNode"
                                id="greetingDetailsNode"
                                class="GreetingWidget"></div>
 	</div>
 
-	<b>Guestbook:</b>
+	<b>${nls.guestbookName}</b>
     <input data-dojo-attach-point="guestbookNode"
            value="" id="txtGuestbook_name" name="guestbook_name">
     <button data-dojo-type="dijit/form/Button"
             data-dojo-attach-point="switchButtonNode"
             id="switchButton"
-            value="Switch Guestbook"> Switch Guestbook </button>
+            value="Switch Guestbook">${nls.switchGuestbook}</button>
 	<div data-dojo-type="dojox.widget.Standby" data-dojo-props="color:'transparent', image:'/static/js/guestbook/widget/images/preloader20130311.gif'" data-dojo-attach-point="standby"></div>
 </div>
 

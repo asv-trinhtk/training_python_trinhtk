@@ -21,11 +21,13 @@ define([
 	'dojo/_base/Deferred',
 	'../models/app',
 	'./_StandbyMixin',
+	'dojo/i18n',
+	'dojo/i18n!../nls/common',
 	"dojo/text!./templates/GuestbookWidget.html"
 ], function(declare, lang, on, arrayUtil, GreetingWidget, GreetingStore,
 			dom, cookie, domConstruct, button, validationtextbox,_ViewBaseMixin,
 			_ListViewMixin, router, domStyle, hash, topic, domAttr, query, Deferred, app,
-			_StandbyMixin, template){
+			_StandbyMixin, i18n, nls, template){
 	//Show greetings
 
 	return declare("app.FirstWidget",[_ListViewMixin, _StandbyMixin], {
@@ -38,6 +40,7 @@ define([
 		model : app,
 		itemLoaded: 0,
 		keySearch: null,
+		nls : nls,
 
 		_signclick: function(){
 			this.keySearch = null;
@@ -212,6 +215,7 @@ define([
 			this.guestbookNode.value = this.guestbook;
 			this._appendStandby();
 			this.inherited(arguments);
+			console.log(nls);
 			domStyle.set(dom.byId("idGreeting"), "display", "none");
 			domStyle.set(dom.byId("idGreetingDetails"), "display", "none");
 			this.own(
