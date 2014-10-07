@@ -21,8 +21,8 @@ define([
 	});
 
 	router.register('post/:id', function(evt) {
-		app.set('router', 'postsDetail');
 		app.set('idGreeting', evt.params.id);
+		app.set('router', 'postsDetail');
 	});
 
 	return function() {

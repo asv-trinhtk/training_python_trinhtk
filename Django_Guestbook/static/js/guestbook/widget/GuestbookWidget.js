@@ -89,7 +89,6 @@ define([
 			if (this.autoload){
 				var start = new Date().getTime();
 				while (new Date().getTime() < start + time);
-				this.greetingDetailsNode.innerHTML = "";
 				var greetingContainer = this.greetingDetailsNode;
 				this.store.getGreeting(id, guestbook).then(
 						function(data){
@@ -142,9 +141,12 @@ define([
 					domStyle.set(dom.byId("idGreetingDetails"), "display", "none");
 					break;
 				case 'postsDetail':
-					guestbook._watch(this.model, 'idGreeting', function(name, oldValue, value) {
-						guestbook.loaddetailgreeting(value, guestbook.guestbook, 0);
-					});
+					var guestbook = this;
+					while (guestbook.greetingDetailsNode.firstChild) {
+						guestbook.greetingDetailsNode.removeChild(guestbook.greetingDetailsNode.firstChild);
+					}
+					guestbook.clearItems();
+					guestbook.loaddetailgreeting(guestbook.model.idGreeting, guestbook.guestbook, 0);
 					domStyle.set(dom.byId("idPost"), "display", "none");
 					domStyle.set(dom.byId("idGreeting"), "display", "none");
 					domStyle.set(dom.byId("idGreetingDetails"), "display", "block");
