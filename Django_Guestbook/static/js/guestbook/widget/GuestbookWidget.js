@@ -164,6 +164,7 @@ define([
 
 		loadItems: function(options) {
 			// Override
+			this.standby.show();
 			var options = options || {},
 				guestbookWidget = this,
 				forceNew = options.forceNew || false;
@@ -176,7 +177,6 @@ define([
 				this.clearItems();
 			}
 			return Deferred.when(this.fetchItems(options), lang.hitch(this, function(items) {
-				this.standby.show();
 				if (items.greetings && items.greetings.length === options.limit) {
 					arrayUtil.forEach(items.greetings, function(greeting){
 						greeting.is_admin = items.is_admin;
@@ -210,6 +210,7 @@ define([
 		postCreate: function(){
 			this.store = new GreetingStore();
 			this.guestbookNode.value = this.guestbook;
+			this._appendStandby();
 			this.inherited(arguments);
 			domStyle.set(dom.byId("idGreeting"), "display", "none");
 			domStyle.set(dom.byId("idGreetingDetails"), "display", "none");
